@@ -24,6 +24,7 @@ namespace WpfApp1
         double second;
 
         string op;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace WpfApp1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Button btn = sender as Button;
+            Button btn = (Button)sender;
             if (resultTxtb.Text == "0")
             {
                 resultTxtb.Text = btn.Content.ToString();
@@ -41,7 +42,7 @@ namespace WpfApp1
             {
                 resultTxtb.Text += btn.Content.ToString();
             }
-            first = double.Parse(resultTxtb.Text);
+            second = double.Parse(resultTxtb.Text);
         }
 
         private void backspaceBtn_Click(object sender, RoutedEventArgs e)
@@ -66,39 +67,51 @@ namespace WpfApp1
         private void equalBtn_Click(object sender, RoutedEventArgs e)
         {
             second = double.Parse(resultTxtb.Text);
-            if (op == "+")
+            double result = 0;
+            try
             {
-                resultTxtb.Text = (first + second).ToString();
-                infoLbl.Content = "";
-            }
-            else if (op == "-")
-            {
-                resultTxtb.Text = (first - second).ToString();
-                infoLbl.Content = "";
-            }
-            else if (op == "*")
-            {
-                resultTxtb.Text = (first * second).ToString();
-                infoLbl.Content = "";
-            }
-            else if (op == "/")
-            {
-                if (second == 0)
+                if (op == "+")
                 {
-                    resultTxtb.Text = "Impossible";
-                    infoLbl.Content = "";
+                    result = first + second;
+                    resultTxtb.Text = result.ToString();
                 }
-                else
+                else if (op == "-")
                 {
-                    resultTxtb.Text = (first / second).ToString();
-                    infoLbl.Content = "";
+                    result = first - second;
+                    resultTxtb.Text = result.ToString();
+                }
+                else if (op == "*")
+                {
+                    result = first * second;
+                    resultTxtb.Text = result.ToString();
+                }
+                else if (op == "/")
+                {
+                    if (second == 0)
+                    {
+                        resultTxtb.Text = "Impossible";
+                        infoLbl.Content = "";
+                    }
+                    else
+                    {
+                        result = first / second;
+                        resultTxtb.Text = result.ToString();
+                    }
+                }
+                else if (op == "X^Y")
+                {
+                    result = Math.Pow(first, second);
+                    infoLbl.Content = $"{first}^{second}";
+                    resultTxtb.Text = result.ToString();
                 }
             }
-            else if (op == "X^Y")
+            catch (Exception)
             {
-                resultTxtb.Text = (Math.Pow(first, second)).ToString();
-                infoLbl.Content = $"{first}^{second}";
+                
+
             }
+
+            infoLbl.Content = "";
         }
 
         private void plusBtn_Click(object sender, RoutedEventArgs e)
@@ -109,6 +122,22 @@ namespace WpfApp1
             resultTxtb.Text = "0";
         }
 
+        private void divBtn_Click(object sender, RoutedEventArgs e)
+        {
+            first = double.Parse(resultTxtb.Text);
+            op = "/";
+            infoLbl.Content = resultTxtb.Text + "÷";
+            resultTxtb.Text = "0";
+        }
+
+        private void multBtn_Click(object sender, RoutedEventArgs e)
+        {
+            first = double.Parse(resultTxtb.Text);
+            op = "*";
+            infoLbl.Content = resultTxtb.Text + "×";
+            resultTxtb.Text = "0";
+        }
+
         private void minusBtn_Click(object sender, RoutedEventArgs e)
         {
             first = double.Parse(resultTxtb.Text);
@@ -116,5 +145,78 @@ namespace WpfApp1
             infoLbl.Content = resultTxtb.Text + "-";
             resultTxtb.Text = "0";
         }
+
+        private void cleanBtn_Click(object sender, RoutedEventArgs e)
+        {
+            resultTxtb.Text = "0";
+            infoLbl.Content = "";
+        }
+
+        private void pointBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (resultTxtb.Text == "0")
+            {
+                resultTxtb.Text = "0";
+            }
+            if (!resultTxtb.Text.Contains(","))
+            {
+                resultTxtb.Text += ",";
+            }
+        }
+
+        private void x2_Click(object sender, RoutedEventArgs e)
+        {
+            double num = double.Parse(resultTxtb.Text);
+            infoLbl.Content = $"{num}^2";
+            num = Math.Pow(num, 2);
+            resultTxtb.Text = num.ToString();
+        }
+
+
+
+        private void randSquareBtn_Click(object sender, RoutedEventArgs e)
+        {
+            first = double.Parse(resultTxtb.Text);
+            op = "X^Y";
+            infoLbl.Content = resultTxtb.Text + "^";
+            resultTxtb.Text = "0";
+        }
+
+        private void pozitiveOrPozitiveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (resultTxtb.Text == "0")
+            {
+                resultTxtb.Text = "0";
+            }
+            else
+            {
+                if (!resultTxtb.Text.Contains("-"))
+                {
+                    resultTxtb.Text = $"-{resultTxtb.Text}";
+                }
+                else
+                {
+                    resultTxtb.Text = resultTxtb.Text.Replace("-", "");
+                }
+            }
+        }
+
+        private void powBtn_Click(object sender, RoutedEventArgs e)
+        {
+            double num = double.Parse(resultTxtb.Text);
+            infoLbl.Content = $"√{num}";
+            num = Math.Sqrt(num);
+            resultTxtb.Text = num.ToString();
+        }
+
+
+
+        //private void minusBtn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    first = double.Parse(resultTxtb.Text);
+        //    op = "-";
+        //    infoLbl.Content = resultTxtb.Text + "-";
+        //    resultTxtb.Text = "0";
+        //}
     }
 }

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="614" Width="335"
+        Title="AZCalculator" Height="614" Width="335"
+        ResizeMode="NoResize" Icon="/favicon.ico"
         >
     <Window.Resources>
         <Style x:Key="FocusVisual">
@@ -65,25 +66,28 @@
         </Style>
     </Window.Resources>
     <Canvas Background="#F6EFFF" >
-        <Label Content="Calculator"
+        <Label Content="AZCalculator"
                FontWeight="Bold"
                FontSize="22"
                Canvas.Top="10"
                Canvas.Left="42"></Label>
 
-        <TextBox 
+        <TextBlock 
+            Foreground="Black"
             Name="resultTxtb"
             Text="0"
-            HorizontalContentAlignment="Right"
-            VerticalContentAlignment="Center"
+            Background="White"
             FontSize="40"
             IsEnabled="False" 
             Canvas.Left="15"
             Canvas.Top="65"
             Width="291" 
-            Height="85"></TextBox>
+            Height="85" 
+            TextAlignment="Right"
+            />
 
-        <Button  Style="{DynamicResource myButton}" Content="(" FontSize="30" Background="#E6D6FE" Canvas.Left="15" Canvas.Top="172" Height="57" Width="58" HorizontalAlignment="Center" VerticalAlignment="Top" >
+
+        <Button Name="pozitiveOrPozitiveBtn" Click="pozitiveOrPozitiveBtn_Click" Style="{DynamicResource myButton}" Content="+/-" FontSize="27" Background="#E6D6FE" Canvas.Left="15" Canvas.Top="172" Height="57" Width="58" HorizontalAlignment="Center" VerticalAlignment="Top" >
 
         </Button>
 
@@ -95,11 +99,11 @@
 
         </Button>
 
-        <Button Style="{DynamicResource myButton}" Content="÷" FontSize="30" Background="#E6D6FE" Canvas.Left="91" Canvas.Top="237" Height="57" Width="58" HorizontalAlignment="Left" VerticalAlignment="Top" >
+        <Button Name="divBtn" Click="divBtn_Click"  Style="{DynamicResource myButton}" Content="÷" FontSize="30" Background="#E6D6FE" Canvas.Left="91" Canvas.Top="237" Height="57" Width="58" HorizontalAlignment="Left" VerticalAlignment="Top" >
 
         </Button>
 
-        <Button Style="{DynamicResource myButton}" Content=")" FontSize="30" Background="#E6D6FE" Canvas.Left="91" Canvas.Top="172" Height="57" Width="58" HorizontalAlignment="Left" VerticalAlignment="Center" >
+        <Button Name="powBtn" Click="powBtn_Click" Style="{DynamicResource myButton}" Content="√" FontSize="30" Background="#E6D6FE" Canvas.Left="91" Canvas.Top="172" Height="57" Width="58" HorizontalAlignment="Left" VerticalAlignment="Center" >
 
         </Button>
 
@@ -107,12 +111,12 @@
 
         </Button>
 
-        <Button Style="{DynamicResource myButton}" FontSize="30" Background="#E6D6FE" Canvas.Left="15" Canvas.Top="237" Height="57" Width="58" HorizontalAlignment="Center" VerticalAlignment="Top" >
-            <Image Source="Images/discount.png" Height="18" Width="19"></Image>
+        <Button Name="cleanBtn" Click="cleanBtn_Click" Style="{DynamicResource myButton}" FontSize="30" Background="#E6D6FE" Canvas.Left="15" Canvas.Top="237" Height="57" Width="58" HorizontalAlignment="Center" VerticalAlignment="Top" >
+            C
         </Button>
 
-        <Button Style="{DynamicResource myButton}" Content="√" FontSize="30" Background="#E6D6FE" Canvas.Left="170" Canvas.Top="174" Height="57" Width="58" HorizontalAlignment="Left" VerticalAlignment="Center" >
-
+        <Button Name="randSquareBtn" Click="randSquareBtn_Click" Style="{DynamicResource myButton}" FontSize="30" Background="#E6D6FE" Canvas.Left="170" Canvas.Top="174" Height="57" Width="58" HorizontalAlignment="Left" VerticalAlignment="Center" >
+            x
         </Button>
 
 
@@ -121,11 +125,11 @@
         </Button>
 
 
-        <Button Style="{DynamicResource myButton}" Content="x²" FontSize="30" Background="#E6D6FE" Canvas.Left="248" Canvas.Top="174" Height="57" Width="58" HorizontalAlignment="Center" VerticalAlignment="Top" >
+        <Button Name="x2" Click="x2_Click" Style="{DynamicResource myButton}" Content="x²" FontSize="30" Background="#E6D6FE" Canvas.Left="248" Canvas.Top="174" Height="57" Width="58" HorizontalAlignment="Center" VerticalAlignment="Top" >
 
         </Button>
 
-        <Button Style="{DynamicResource myButton}" Content="×" FontSize="30" Background="#E6D6FE" Canvas.Left="170" Canvas.Top="237" Height="57" Width="58" HorizontalAlignment="Left" VerticalAlignment="Top" >
+        <Button Name="multBtn" Click="multBtn_Click" Style="{DynamicResource myButton}" Content="×" FontSize="30" Background="#E6D6FE" Canvas.Left="170" Canvas.Top="237" Height="57" Width="58" HorizontalAlignment="Left" VerticalAlignment="Top" >
 
         </Button>
 
@@ -137,7 +141,7 @@
 
         </Button>
 
-        <Button Name="minusBtn" Click="minusBtn_Click" Style="{DynamicResource myButton}" Content="-" FontSize="30" Background="#E6D6FE" Canvas.Left="248" Canvas.Top="306" Height="57" Width="58" HorizontalAlignment="Center" VerticalAlignment="Top" >
+        <Button Name="minusBtn" Click="minusBtn_Click"  Style="{DynamicResource myButton}" Content="-" FontSize="30" Background="#E6D6FE" Canvas.Left="248" Canvas.Top="306" Height="57" Width="58" HorizontalAlignment="Center" VerticalAlignment="Top" >
 
         </Button>
 
@@ -169,12 +173,15 @@
 
         </Button>
 
-        <Button Style="{DynamicResource myButton}" Content="." FontSize="30" Background="#E6D6FE" Canvas.Left="170" Canvas.Top="510" Height="57" Width="58" HorizontalAlignment="Left" VerticalAlignment="Top" >
+        <Button Name="pointBtn" Click="pointBtn_Click" Style="{DynamicResource myButton}" Content="." FontSize="30" Background="#E6D6FE" Canvas.Left="170" Canvas.Top="510" Height="57" Width="58" HorizontalAlignment="Left" VerticalAlignment="Top" >
 
         </Button>
 
-        <Label Name="infoLbl" Canvas.Left="15" Canvas.Top="123" Content="" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" ></Label>
+        <Label Foreground="Gray" Name="infoLbl" Canvas.Left="15" Canvas.Top="123" Content="" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" ></Label>
 
+        <Label Content="y" FontSize="15" Height="36" Width="27" Canvas.Left="201" Canvas.Top="172" >
+
+        </Label>
         <Image Height="32" Width="32" Stretch="Uniform" Source="Images/menu.png" Canvas.Top="15"  Canvas.Left="10"></Image>
     </Canvas>
 </Window>
