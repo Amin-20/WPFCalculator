@@ -65,8 +65,9 @@
             </Setter>
         </Style>
     </Window.Resources>
+   
     <Canvas Background="#F6EFFF" >
-        <Label Content="AZCalculator"
+        <Label Content="Calculator"
                FontWeight="Bold"
                FontSize="22"
                Canvas.Top="10"

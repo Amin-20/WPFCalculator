@@ -57,6 +57,10 @@ namespace WpfApp1
                 {
                     resultTxtb.Text = "0";
                 }
+                else if(resultTxtb.Text== "Impossible")
+                {
+                    resultTxtb.Text="0";
+                }
                 else
                 {
                     resultTxtb.Text = resultTxtb.Text.Remove(resultTxtb.Text.Length - 1, 1);
@@ -91,6 +95,7 @@ namespace WpfApp1
                     {
                         resultTxtb.Text = "Impossible";
                         infoLbl.Content = "";
+                        Console.ReadKey();
                     }
                     else
                     {
@@ -104,6 +109,7 @@ namespace WpfApp1
                     infoLbl.Content = $"{first}^{second}";
                     resultTxtb.Text = result.ToString();
                 }
+                resultTxtb.Text = result.ToString(); ;
             }
             catch (Exception)
             {
