@@ -38,6 +38,10 @@ namespace WpfApp1
             {
                 resultTxtb.Text = btn.Content.ToString();
             }
+            else if(resultTxtb.Text== "Impossible")
+            {
+                resultTxtb.Text = btn.Content.ToString();
+            }
             else
             {
                 resultTxtb.Text += btn.Content.ToString();
