@@ -38,7 +38,7 @@ namespace WpfApp1
             {
                 resultTxtb.Text = btn.Content.ToString();
             }
-            else if(resultTxtb.Text== "Impossible")
+            else if (resultTxtb.Text == "Impossible")
             {
                 resultTxtb.Text = btn.Content.ToString();
             }
@@ -61,9 +61,13 @@ namespace WpfApp1
                 {
                     resultTxtb.Text = "0";
                 }
-                else if(resultTxtb.Text== "Impossible")
+                else if (resultTxtb.Text == "Impossible")
                 {
-                    resultTxtb.Text="0";
+                    resultTxtb.Text = "0";
+                }
+                else if (double.Parse(resultTxtb.Text) < 0 && resultTxtb.Text.Length == 2)
+                {
+                    resultTxtb.Text = "0";
                 }
                 else
                 {
@@ -117,7 +121,7 @@ namespace WpfApp1
             }
             catch (Exception)
             {
-                
+
 
             }
 

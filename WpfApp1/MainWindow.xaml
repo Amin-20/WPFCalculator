@@ -88,15 +88,34 @@
             />
 
 
-        <Button Name="pozitiveOrPozitiveBtn" Click="pozitiveOrPozitiveBtn_Click" Style="{DynamicResource myButton}" Content="+/-" FontSize="27" Background="#E6D6FE" Canvas.Left="15" Canvas.Top="172" Height="57" Width="58" HorizontalAlignment="Center" VerticalAlignment="Top" >
+        <Button Name="pozitiveOrPozitiveBtn"
+                Click="pozitiveOrPozitiveBtn_Click"
+                Style="{DynamicResource myButton}"
+                Content="+/-"
+                FontSize="27"
+                Background="#E6D6FE"
+                Canvas.Left="15"
+                Canvas.Top="172"
+                Height="57"
+                Width="58"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" >
 
         </Button>
 
-        <Button Click="Button_Click" Style="{DynamicResource myButton}" Content="1" FontSize="30" Background="#E6D6FE" Canvas.Left="15" Canvas.Top="440" Height="57" Width="58" >
+        <Button Click="Button_Click"
+                Style="{DynamicResource myButton}"
+                Content="1" FontSize="30"
+                Background="#E6D6FE"
+                Canvas.Left="15" 
+                Canvas.Top="440"
+                Height="57"
+                Width="58" >
 
         </Button>
 
-        <Button Click="Button_Click" Style="{DynamicResource myButton}" Content="7" FontSize="30" Background="#E6D6FE" Canvas.Left="15" Canvas.Top="304" Height="57" Width="58" HorizontalAlignment="Left" VerticalAlignment="Top" >
+        <Button Click="Button_Click" 
+                Style="{DynamicResource myButton}" Content="7" FontSize="30" Background="#E6D6FE" Canvas.Left="15" Canvas.Top="304" Height="57" Width="58" HorizontalAlignment="Left" VerticalAlignment="Top" >
 
         </Button>
 
